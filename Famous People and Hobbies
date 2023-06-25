@@ -1,0 +1,49 @@
+/**In this project, you’re going to make your own table with some small 
+set of “famous people”, then make more tables about things they do and join 
+those to create nice human readable lists. Contains at least two tables with at 
+least 15 rows total. One of the tables contains a column that relates to the primary key of another table.
+Has at least one query that does a JOIN.*/
+
+CREATE TABLE Famous_Actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER); 
+    
+INSERT INTO Famous_Actors VALUES (1, "Jack Champion", 18); 
+INSERT INTO Famous_Actors VALUES (2, "Jenna Ortega", 20); 
+INSERT INTO Famous_Actors VALUES (3, "Zoe Saldana", 45); 
+INSERT INTO Famous_Actors VALUES (4, "Robert Downey Jr.", 58); 
+INSERT INTO Famous_Actors VALUES (5, "Jennifer Lawrence", 32); 
+INSERT INTO Famous_Actors VALUES (6, "Johnny Depp", 60);
+INSERT INTO Famous_Actors VALUES (7, "Margot Robbie", 32);
+INSERT INTO Famous_Actors VALUES (8, "Ryan Gosling", 42); 
+INSERT INTO Famous_Actors VALUES (9, "Tom Hanks", 66); 
+INSERT INTO Famous_Actors VALUES (10, "Courteney Cox", 59);
+INSERT INTO Famous_Actors VALUES (11, "Will Ferrell", 55);
+INSERT INTO Famous_Actors VALUES (12, "Leonardo Dicaprio", 48);
+INSERT INTO Famous_Actors VALUES (13, "Samuel L. Jackson", 74);
+INSERT INTO Famous_Actors VALUES (14, "Chris Pine", 42);
+INSERT INTO Famous_Actors VALUES (15, "Zooey Deschanel", 43); 
+
+CREATE TABLE Hobbies (id INTEGER PRIMARY KEY AUTOINCREMENT, person_id INTEGER, name TEXT); 
+
+INSERT INTO Hobbies (person_id, name) VALUES (1, "Exercise"); 
+INSERT INTO Hobbies (person_id, name) VALUES (2, "Writing"); 
+INSERT INTO Hobbies (person_id, name) VALUES (3, "Dancing"); 
+INSERT INTO Hobbies (person_id, name) VALUES (4, "Martial Arts");
+INSERT INTO Hobbies (person_id, name) VALUES (5, "Painting"); 
+INSERT INTO Hobbies (person_id, name) VALUES (6, "Painting"); 
+INSERT INTO Hobbies (person_id, name) VALUES (7, "Surfing"); 
+INSERT INTO Hobbies (person_id, name) VALUES (8, "Knitting"); 
+INSERT INTO Hobbies (person_id, name) VALUES (9, "Collecting"); 
+INSERT INTO Hobbies (person_id, name) VALUES (10, "Piano");
+INSERT INTO Hobbies (person_id, name) VALUES (11, "Baseball");
+INSERT INTO Hobbies (person_id, name) VALUES (12, "Bicycling"); 
+INSERT INTO Hobbies (person_id, name) VALUES (13, "Golf");
+INSERT INTO Hobbies (person_id, name) VALUES (14, "Ballet");
+INSERT INTO Hobbies (person_id, name) VALUES (15, "Crafts");  
+
+SELECT FA.fullname, H.name
+FROM Famous_Actors FA
+JOIN Hobbies H
+ON FA.id = H.person_id; 
