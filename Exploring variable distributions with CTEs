@@ -1,0 +1,16 @@
+-- Using a CTE and the frontendeventlog table, find the distribution of users across the number of times the email link was clicked per user. -- 
+
+with email_link_clicks as (
+select userid, count(*) as num_link_clicks
+from frontendeventlog el
+where eventid = 5
+group by userid
+)
+
+select
+    num_link_clicks, 
+    count(*) as num_users
+from
+    email_link_clicks
+group by 
+    num_link_clicks; 
