@@ -1,0 +1,30 @@
+-- CTE practice: Calculating descriptive statistics for monthly revenue by product -- 
+-- Business problem: The leadership team at your company is making goals for 2023 and wants to understand how much revenue each of the product subscriptions, basic and expert, 
+are generating each month. More specifically, they want to understand the distribution of monthly revenue across the past year, 2022. 
+
+Busines questions to be answered: 
+1. How much revenue does each product usually generate each month?
+2. Which product had the most success throughout all of last year?
+3. Did either product fluctuate greatly each month or was the month-to-month trend 
+fairly consistent? -- 
+
+
+with monthly_revs as (
+select date_trunc('month',s.ORDERDATE), p.PRODUCTNAME, sum(REVENUE) as revenue
+from subscriptions s
+join products p
+on s.PRODUCTID = p.PRODUCTID
+where s.ORDERDATE between '2022-01-01' and '2022-12-31'
+group by date_trunc('month',s.ORDERDATE), p.PRODUCTNAME
+)
+
+select
+    productname,
+    min(REVENUE) as min_rev,
+    max(REVENUE) as max_rev,
+    avg(REVENUE) as avg_rev,
+    stddev(REVENUE) as std_dev_rev
+from 
+    monthly_revs
+group by 
+    productname; 
